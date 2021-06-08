@@ -62,7 +62,7 @@ for i=1:20
     clear B1 B2 FitInfo1 FitInfo2
 end
 
-% Choosing the parameter set with minimum standard error
+% Choosing the alpha parameter set with minimum standard error
 for i=1:20
    inte_comp(i) = inte_elastic{i, 2}.MSE(inte_elastic{i, 2}.IndexMinMSE);
    segre_comp(i) = segre_elastic{i, 2}.MSE(segre_elastic{i, 2}.IndexMinMSE);
@@ -83,7 +83,7 @@ end
     lassoPlot(B1,FitInfo1,'PlotType','CV');
     lassoPlot(B2,FitInfo2,'PlotType','CV');
     
-  % calculate the correlation between predicted and real scl values
+  % calculate the correlation between predicted and real SCL values with lambda parameters at minimum SE plus one standard deviation in chosen alpha value.
     [c1,p1] = corr(x_s1*B1(:,FitInfo1.Index1SE)+FitInfo1.Intercept(1,FitInfo1.Index1SE),y_s1,'Type','Pearson')
     [c2,p2] = corr(x_s2*B2(:,FitInfo2.Index1SE)+FitInfo2.Intercept(1,FitInfo2.Index1SE),y_s2,'Type','Pearson')
 
